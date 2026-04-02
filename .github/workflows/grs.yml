@@ -1,21 +1,18 @@
 name: Update README cards
-
 on:
   schedule:
     - cron: "0 */4 * * *" # every 4 hours
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # Stats card
       - name: Generate stats card
         uses: readme-tools/github-readme-stats-action@v1
         with:
@@ -31,7 +28,20 @@ jobs:
           path: profile/stats.svg
           token: ${{ secrets.PAT }}
 
-      - name: Generate top languages card
+      # Top Languages — default layout
+      - name: Generate top-langs card (default)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: >
+            username=${{ github.repository_owner }}
+            &langs_count=10
+            &hide_border=false
+          path: profile/top-langs-default.svg
+          token: ${{ secrets.PAT }}
+
+      # Top Languages — compact layout
+      - name: Generate top-langs card (compact)
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
@@ -40,19 +50,69 @@ jobs:
             &layout=compact
             &langs_count=10
             &hide_border=false
-          path: profile/top-langs.svg
+          path: profile/top-langs-compact.svg
           token: ${{ secrets.PAT }}
 
+      # Top Languages — donut layout
+      - name: Generate top-langs card (donut)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: >
+            username=${{ github.repository_owner }}
+            &layout=donut
+            &langs_count=10
+            &hide_border=false
+          path: profile/top-langs-donut.svg
+          token: ${{ secrets.PAT }}
+
+      # Top Languages — donut-vertical layout
+      - name: Generate top-langs card (donut-vertical)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: >
+            username=${{ github.repository_owner }}
+            &layout=donut-vertical
+            &langs_count=10
+            &hide_border=false
+          path: profile/top-langs-donut-vertical.svg
+          token: ${{ secrets.PAT }}
+
+      # Top Languages — pie layout
+      - name: Generate top-langs card (pie)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: >
+            username=${{ github.repository_owner }}
+            &layout=pie
+            &langs_count=10
+            &hide_border=false
+          path: profile/top-langs-pie.svg
+          token: ${{ secrets.PAT }}
+
+      # WakaTime card
+      - name: Generate WakaTime card
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: wakatime
+          options: >
+            username=${{ github.repository_owner }}
+            &layout=compact
+            &hide_border=false
+          path: profile/wakatime.svg
+          token: ${{ secrets.PAT }}
+
+      # Commit & push
       - name: Commit & push if changed
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-
           git add profile/*.svg
-
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update README cards"
+            git commit -m "chore: update README cards"
             git push
           fi
