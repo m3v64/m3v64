@@ -1,7 +1,7 @@
 name: Update README cards
 on:
   schedule:
-    - cron: "0 */4 * * *" # every 4 hours
+    - cron: "0 */4 * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -17,14 +17,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: stats
-          options: >
-            username=${{ github.repository_owner }}
-            &show_icons=true
-            &include_all_commits=true
-            &count_private=true
-            &hide_border=false
-            &rank_icon=github
-            &line_height=24
+          options: "username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&count_private=true&hide_border=false&rank_icon=github&line_height=24"
           path: profile/stats.svg
           token: ${{ secrets.PAT }}
 
@@ -33,10 +26,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
-          options: >
-            username=${{ github.repository_owner }}
-            &langs_count=10
-            &hide_border=false
+          options: "username=${{ github.repository_owner }}&langs_count=10&hide_border=false"
           path: profile/top-langs-default.svg
           token: ${{ secrets.PAT }}
 
@@ -45,11 +35,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
-          options: >
-            username=${{ github.repository_owner }}
-            &layout=compact
-            &langs_count=10
-            &hide_border=false
+          options: "username=${{ github.repository_owner }}&layout=compact&langs_count=10&hide_border=false"
           path: profile/top-langs-compact.svg
           token: ${{ secrets.PAT }}
 
@@ -58,11 +44,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
-          options: >
-            username=${{ github.repository_owner }}
-            &layout=donut
-            &langs_count=10
-            &hide_border=false
+          options: "username=${{ github.repository_owner }}&layout=donut&langs_count=10&hide_border=false"
           path: profile/top-langs-donut.svg
           token: ${{ secrets.PAT }}
 
@@ -71,11 +53,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
-          options: >
-            username=${{ github.repository_owner }}
-            &layout=donut-vertical
-            &langs_count=10
-            &hide_border=false
+          options: "username=${{ github.repository_owner }}&layout=donut-vertical&langs_count=10&hide_border=false"
           path: profile/top-langs-donut-vertical.svg
           token: ${{ secrets.PAT }}
 
@@ -84,11 +62,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
-          options: >
-            username=${{ github.repository_owner }}
-            &layout=pie
-            &langs_count=10
-            &hide_border=false
+          options: "username=${{ github.repository_owner }}&layout=pie&langs_count=10&hide_border=false"
           path: profile/top-langs-pie.svg
           token: ${{ secrets.PAT }}
 
@@ -97,10 +71,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: wakatime
-          options: >
-            username=${{ github.repository_owner }}
-            &layout=compact
-            &hide_border=false
+          options: "username=${{ github.repository_owner }}&layout=compact&hide_border=false"
           path: profile/wakatime.svg
           token: ${{ secrets.PAT }}
 
